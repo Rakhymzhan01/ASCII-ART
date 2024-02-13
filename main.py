@@ -17,3 +17,33 @@ def parse_banner(file_content):
             break
         ascii_dict[char_key] = art
     return ascii_dict
+
+
+def generate_ascii_art(string_to_convert, ascii_dict):
+    """Generates ASCII art for the given string."""
+    ascii_art_lines = []
+    for line in string_to_convert.split("\\n"):
+        ascii_art_for_line = ['' for _ in range(8)]
+        for char in line:
+            if char in ascii_dict:
+                char_art = ascii_dict[char].split("\n")
+                for i in range(8):
+                    ascii_art_for_line[i] += char_art[i] + " "
+        ascii_art_lines.append("\n".join(ascii_art_for_line))
+    return "\n".join(ascii_art_lines)
+
+
+if __name__ == '__main__':
+    user_input = sys.argv
+
+    if len(user_input) < 2:
+        print("Usage: python main.py 'string_to_convert'")
+        sys.exit(1)
+
+    string_to_parse = user_input[1]
+
+    banner_path = os.path.join("./", "standard.txt")
+    banner_content = read_banner(banner_path)
+    ascii_dict = parse_banner(banner_content)
+    ascii_art = generate_ascii_art(string_to_parse, ascii_dict)
+    print(ascii_art)
