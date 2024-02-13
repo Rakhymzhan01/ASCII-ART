@@ -35,14 +35,16 @@ def generate_ascii_art(string_to_convert, ascii_dict):
 
 if __name__ == '__main__':
     user_input = sys.argv
+    banner_type = ('standard', 'shadow', 'thinkertoy')
 
     if len(user_input) < 2:
-        print("Usage: python main.py 'string_to_convert'")
+        print("Usage: python main.py 'string_to_convert' 'banner_type'")
         sys.exit(1)
 
     string_to_parse = user_input[1]
+    banner_type = user_input[2] if len(user_input) == 3 and user_input[2] in banner_type else 'standard'
 
-    banner_path = os.path.join("./", "standard.txt")
+    banner_path = os.path.join("./", f"{banner_type}.txt")
     banner_content = read_banner(banner_path)
     ascii_dict = parse_banner(banner_content)
     ascii_art = generate_ascii_art(string_to_parse, ascii_dict)
