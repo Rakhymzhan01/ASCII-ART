@@ -42,7 +42,7 @@ if __name__ == '__main__':
         sys.exit(1)
 
     string_to_parse = user_input[1]
-    banner_type = user_input[2] if len(user_input) == 3 and user_input[2] in banner_type else 'standard'
+    banner_type = user_input[2] git@github.com:Rakhymzhan01/ASCII-ART.gitif len(user_input) == 3 and user_input[2] in banner_type else 'standard'
 
     banner_path = os.path.join("./", f"{banner_type}.txt")
     banner_content = read_banner(banner_path)
